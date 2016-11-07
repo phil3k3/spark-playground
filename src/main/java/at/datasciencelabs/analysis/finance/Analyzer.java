@@ -6,10 +6,11 @@ import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.PairFunction;
-import org.apache.spark.ml.feature.LabeledPoint;
-import org.apache.spark.ml.linalg.Vector;
-import org.apache.spark.ml.linalg.Vectors;
-import org.apache.spark.mllib.feature.HashingTF;
+import org.apache.spark.mllib.classification.NaiveBayes;
+import org.apache.spark.mllib.classification.NaiveBayesModel;
+import org.apache.spark.mllib.linalg.Vector;
+import org.apache.spark.mllib.linalg.Vectors;
+import org.apache.spark.mllib.regression.LabeledPoint;
 import scala.Tuple2;
 
 import java.time.LocalDate;
@@ -34,13 +35,15 @@ public class Analyzer {
     private static void naiveBayes(JavaRDD<String> csvFile, JavaSparkContext sc) {
         JavaRDD<String> training = sc.textFile("training.csv");
 
-        HashingTF hashingTF = new HashingTF();
-
         JavaRDD<LabeledPoint> labeledPointJavaRDD = training.map((Function<String, LabeledPoint>) s -> {
             double label = 1.0;
+            // TODO generate labels and features
+
             Vector features = Vectors.dense(0.1, 0.2, 0.3);
             return new LabeledPoint(label, features);
         });
+
+        final NaiveBayesModel model = NaiveBayes.train(labeledPointJavaRDD.rdd(), 1.0, "bernoulli");
     }
 
     private static void expensesByCategory(JavaRDD<String> csvFile) {

@@ -55,7 +55,9 @@ public class HashingTFTest {
 
     private void execute(Dataset<Row> sentenceData, int numFeatures) {
 
+
         Tokenizer tokenizer = new Tokenizer().setInputCol("sentence").setOutputCol("words");
+
         Dataset<Row> wordsData = tokenizer.transform(sentenceData);
 
         for (Row r : wordsData.select("sentence", "words").takeAsList(5)) {

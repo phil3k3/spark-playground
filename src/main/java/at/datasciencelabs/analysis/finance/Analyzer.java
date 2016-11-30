@@ -28,23 +28,8 @@ public class Analyzer {
 
         expensesByMonth(csvFile);
         expensesByCategory(csvFile);
-
-        naiveBayes(csvFile, sc);
     }
 
-    private static void naiveBayes(JavaRDD<String> csvFile, JavaSparkContext sc) {
-        JavaRDD<String> training = sc.textFile("training.csv");
-
-        JavaRDD<LabeledPoint> labeledPointJavaRDD = training.map((Function<String, LabeledPoint>) s -> {
-            double label = 1.0;
-            // TODO generate labels and features
-
-            Vector features = Vectors.dense(0.1, 0.2, 0.3);
-            return new LabeledPoint(label, features);
-        });
-
-        final NaiveBayesModel model = NaiveBayes.train(labeledPointJavaRDD.rdd(), 1.0, "bernoulli");
-    }
 
     private static void expensesByCategory(JavaRDD<String> csvFile) {
         JavaPairRDD<String, Integer> transactions = csvFile.mapToPair((PairFunction<String, String, Integer>) s -> {

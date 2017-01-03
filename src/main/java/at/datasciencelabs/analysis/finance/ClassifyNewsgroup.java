@@ -20,9 +20,6 @@ import scala.Tuple2;
 
 import java.util.List;
 
-/**
- * Created by phil3k on 07.11.16.
- */
 public class ClassifyNewsgroup {
 
     public static void main(String[] args) {

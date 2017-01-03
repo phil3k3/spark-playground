@@ -9,10 +9,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-/**
- * Created by phil3k on 19.11.16.
- */
-public class NewsGroupLabelConversion {
+class NewsGroupLabelConversion {
 
     public double convert(String path) throws IOException {
         // file:/home/phil3k/projects/spark-playground/spark-playground/20_newsgroup/alt.atheism/51119

@@ -17,9 +17,6 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by phil3k on 01.11.16.
- */
 public class HashingTFTest {
 
     @Test
@@ -54,7 +51,6 @@ public class HashingTFTest {
 
 
     private void execute(Dataset<Row> sentenceData, int numFeatures) {
-
 
         Tokenizer tokenizer = new Tokenizer().setInputCol("sentence").setOutputCol("words");
 

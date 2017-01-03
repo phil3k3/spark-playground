@@ -14,7 +14,7 @@ public class FileBean implements Serializable {
 
     }
 
-    public FileBean(String s, String s1) {
+    FileBean(String s, String s1) {
         this.key = s;
         this.value = s1;
     }

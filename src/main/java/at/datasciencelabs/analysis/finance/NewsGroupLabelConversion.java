@@ -12,8 +12,6 @@ import java.util.stream.Stream;
 class NewsGroupLabelConversion {
 
     public double convert(String path) throws IOException {
-        // file:/home/phil3k/projects/spark-playground/spark-playground/20_newsgroup/alt.atheism/51119
-
         URL url = new URL(path);
         String urlPath = url.getPath();
         Path topLevelDirectory = Paths.get(urlPath).getParent().getParent();
